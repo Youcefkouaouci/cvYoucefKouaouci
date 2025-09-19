@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV - Youcef Kouaouci - Développeur Web</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #5e72eb;
+        --primary-light: #8290f0;
+        --secondary: #2dd4bf;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --glass: rgba(255, 255, 255, 0.85);
+        --border: rgba(94, 114, 235, 0.15);
+        --shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+        font-family: "Roboto", sans-serif;
+        color: var(--dark);
+        line-height: 1.6;
+        padding: 2rem;
+        min-height: 100vh;
+      }
+
+      .cv-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1.5rem;
+      }
+
+      /* Effet Liquid Glass */
+      .glass-panel {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 1.8rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .glass-panel:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+      }
+
+      /* Header */
+      .header {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+        background: linear-gradient(120deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        transform: rotate(30deg);
+        z-index: 0;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        overflow: hidden;
+        margin-right: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .name {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+      }
+
+      .title {
+        font-size: 1.4rem;
+        font-weight: 400;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .contact-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Colonne gauche */
+      .left-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .section-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgba(94, 114, 235, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .section-title i {
+        font-size: 1.1rem;
+      }
+
+      .profile-text {
+        margin-bottom: 1.2rem;
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .skill-category {
+        margin-bottom: 0.8rem;
+      }
+
+      .skill-category h4 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+        font-size: 1.05rem;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .skill-tag {
+        background: rgba(94, 114, 235, 0.1);
+        color: var(--primary);
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .skill-tag:hover {
+        background: var(--primary);
+        color: white;
+        transform: scale(1.05);
+      }
+
+      .qualities-list {
+        list-style: none;
+      }
+
+      .qualities-list li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+      }
+
+      .qualities-list li:last-child {
+        border-bottom: none;
+      }
+
+      .qualities-list li i {
+        color: var(--secondary);
+      }
+
+      /* Colonne droite */
+      .right-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-card,
+      .experience-card,
+      .education-card {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .project-card:last-child,
+      .experience-card:last-child,
+      .education-card:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .project-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin-bottom: 0.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .project-title i {
+        color: var(--primary-light);
+      }
+
+      .project-status {
+        display: inline-block;
+        background: rgba(45, 212, 191, 0.15);
+        color: #0d9488;
+        padding: 0.2rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-left: 0.5rem;
+      }
+
+      .project-desc {
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.8rem;
+      }
+
+      .tech-item {
+        background: rgba(130, 144, 240, 0.1);
+        color: var(--primary);
+        padding: 0.3rem 0.7rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .date {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .company,
+      .school {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .responsibilities {
+        list-style-type: none;
+        padding-left: 1.2rem;
+      }
+
+      .responsibilities li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .responsibilities li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--primary-light);
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      .footer {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 1.5rem;
+        color: #64748b;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: 1rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .cv-container {
+          grid-template-columns: 1fr;
+        }
+
+        .header {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.5rem;
+        }
+
+        .profile-image {
+          margin-right: 0;
+          margin-bottom: 1rem;
+        }
+
+        .contact-info {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cv-container">
+      <!-- En-tête -->
+      <div class="header glass-panel">
+        <div class="profile-image">
+          <img
+            src="https://randomuser.me/api/portraits/men/32.jpg"
+            alt="Youcef Kouaouci"
+          />
+        </div>
+        <div class="header-content">
+          <h1 class="name">Youcef Kouaouci</h1>
+          <div class="title">Développeur Web Full Stack</div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span>youcefkouaouci@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <span>07 44 80 21 63</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <span>Lyon, France</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <span>linkedin.com/in/youcef-kouaouci</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fab fa-github"></i>
+              </div>
+              <span>github.com/Youcefkouaouci</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne de gauche - Compétences -->
+      <div class="left-column">
+        <div class="glass-panel">
+          <h2 class="section-title"><i class="fas fa-user"></i> Profil</h2>
+          <p class="profile-text">
+            Architecte avec deux ans d'expérience, je me reconvertis dans le
+            développement informatique pour créer des outils de simulation et
+            aide à la décision. Attentif aux synergies entre architecture,
+            technologie et programmation, je recherche une alternance de trois
+            ans à partir d'octobre 2025.
+          </p>
+        </div>
+
+        <div class="glass-panel">
+          <h2 class="section-title">
+            <i class="fas fa-code"></i> Compétences Techniques
+          </h2>
+          <div class="skills-container">
+            <div class="skill-category">
+              <h4>Programmation</h4>
+              <div class="skills-list">
+                <div class="skill-tag">POO</div>
+                <div class="skill-tag">Java</div>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Backend</h4>
+              <div class="skills-list">
+                <div class="skill-tag">PHP</div>
+                <div class="skill-tag">Symfony</div>
+                <div class="skill-tag">API REST</div>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Frontend</h4>
+              <div class="skills-list">
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">Angular</div>
+                <div class="skill-tag">HTML5</div>
+                <div class="skill-tag">CSS3</div>
+                <div class="skill-tag">Tailwind</div>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Bases de données</h4>
+              <div class="skills-list">
+                <div class="skill-tag">MySQL</div>
+                <div class="skill-tag">NoSQL</div>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>DevOps & Outils</h4>
+              <div class="skills-list">
+                <div class="skill-tag">Git</div>
+                <div class="skill-tag">GitHub</div>
+                <div class="skill-tag">Docker</div>
+                <div class="skill-tag">Linux</div>
+                <div class="skill-tag">VSCode</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <h2 class="section-title">
+            <i class="fas fa-medal"></i> Certifications
+          </h2>
+          <ul class="qualities-list">
+            <li><i class="fas fa-language"></i> Anglais - Niveau B2</li>
+            <li><i class="fas fa-id-card"></i> Permis B</li>
+          </ul>
+        </div>
+
+        <div class="glass-panel">
+          <h2 class="section-title"><i class="fas fa-star"></i> Qualités</h2>
+          <ul class="qualities-list">
+            <li><i class="fas fa-user"></i> Autonomie</li>
+            <li><i class="fas fa-tasks"></i> Organisation</li>
+            <li><i class="fas fa-project-diagram"></i> Gestion de projet</li>
+            <li><i class="fas fa-graduation-cap"></i> Soif d'apprentissage</li>
+            <li><i class="fas fa-users"></i> Travail en équipe</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Colonne de droite - Expériences -->
+      <div class="right-column">
+        <div class="glass-panel">
+          <h2 class="section-title">
+            <i class="fas fa-laptop-code"></i> Projets
+          </h2>
+
+          <div class="project-card">
+            <h3 class="project-title">
+              <i class="fas fa-folder"></i> Portfolio
+              <span class="project-status">En cours</span>
+            </h3>
+            <div class="date">2024 - Présent</div>
+            <p class="project-desc">
+              Conception de la maquette sur Figma, développement du site avec
+              HTML, CSS, JavaScript, Tailwind, et mise en ligne sur GitHub.
+            </p>
+            <div class="tech-stack">
+              <div class="tech-item">HTML</div>
+              <div class="tech-item">CSS</div>
+              <div class="tech-item">JavaScript</div>
+              <div class="tech-item">Tailwind</div>
+              <div class="tech-item">GitHub</div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3 class="project-title">
+              <i class="fas fa-folder"></i> Projets Web
+            </h3>
+            <div class="date">2024</div>
+            <p class="project-desc">
+              Création de sites web statiques et optimisés SEO (La Cuisine
+              Lyonnaise, Blog de Voyage) en HTML, CSS, SASS et déployés sur
+              GitHub Pages.
+            </p>
+            <div class="tech-stack">
+              <div class="tech-item">HTML</div>
+              <div class="tech-item">CSS/SASS</div>
+              <div class="tech-item">SEO</div>
+              <div class="tech-item">GitHub Pages</div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3 class="project-title">
+              <i class="fas fa-folder"></i> Business Case - Co-Living Site
+              <span class="project-status">En cours</span>
+            </h3>
+            <div class="date">2024 - Présent</div>
+            <p class="project-desc">
+              Développement d'une application web dynamique facilitant la mise
+              en relation pour les espaces de coliving.
+            </p>
+            <div class="tech-stack">
+              <div class="tech-item">Angular</div>
+              <div class="tech-item">API REST</div>
+              <div class="tech-item">MySQL</div>
+              <div class="tech-item">TypeScript</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <h2 class="section-title">
+            <i class="fas fa-briefcase"></i> Expériences Professionnelles
+          </h2>
+
+          <div class="experience-card">
+            <div class="date">
+              <i class="far fa-calendar-alt"></i> 2021 - 2023 (2 ans)
+            </div>
+            <h3 class="company">D.O Architecte</h3>
+            <h4>Apprenti chargé d'études de projet</h4>
+            <ul class="responsibilities">
+              <li>
+                Gestion et conception de projets avec des outils numériques de
+                l'esquisse à DCE, plans, perspectives et détails techniques
+              </li>
+              <li>
+                Collaboration avec différentes parties prenantes (MOA,
+                ingénieurs, designers)
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <div class="date">
+              <i class="far fa-calendar-alt"></i> 2020 - 2021 (6 mois)
+            </div>
+            <h3 class="company">Agence d'architecture BEAFR</h3>
+            <h4>Assistant Architecte</h4>
+            <ul class="responsibilities">
+              <li>Coordination, Communication avec le MOA</li>
+              <li>
+                Chargé de la conception et la modélisation du projet (esquisse,
+                avant-projet, plans d'exécution)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <h2 class="section-title">
+            <i class="fas fa-graduation-cap"></i> Formations
+          </h2>
+
+          <div class="education-card">
+            <div class="date">
+              <i class="far fa-calendar-alt"></i> 2025 - 2026
+            </div>
+            <h3 class="school">
+              ESGI - École Supérieure de génie informatique
+            </h3>
+            <h4>Bachelor en Architecture Logicielle (Admis)</h4>
+          </div>
+
+          <div class="education-card">
+            <div class="date">
+              <i class="far fa-calendar-alt"></i> 2024 - 2025
+            </div>
+            <h3 class="school">Human Booster, Lyon</h3>
+            <h4>Bac+2, Développeur web et web Mobile</h4>
+          </div>
+
+          <div class="education-card">
+            <div class="date"><i class="far fa-calendar-alt"></i> 2020</div>
+            <h3 class="school">Université de Batna 1</h3>
+            <h4>Master en Architecture</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer glass-panel">
+        <p>
+          CV mis à jour le 14 juin 2025 | Conception moderne avec effet "liquid
+          glass"
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
